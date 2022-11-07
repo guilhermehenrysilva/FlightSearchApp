@@ -27,14 +27,15 @@ public class LatamRequest {
                 .queryParam("inFrom","null")
                 .queryParam("inOfferId","null")
                 .queryParam("outFlightDate","null")
-                .queryParam("outFrom","2022-10-15T15%3A00%3A00.000Z")
+                .queryParam("outFrom","2022-11-25T15%3A00%3A00.000Z")
                 .queryParam("outOfferId","null")
                 .queryParam("adult","1")
                 .queryParam("child","0")
                 .queryParam("infant","0")
-                .queryParam("redemption","true")
+                .queryParam("redemption","false")
                 .build();
 
+        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0");
         headers.set("Accept", "*/*");
         headers.set("Content-Type", "application/json");
         headers.set("X-latam-App-Session-Id", "84196897-1687-4d8c-8e63-083091ac204f");
@@ -47,8 +48,8 @@ public class LatamRequest {
         headers.set("X-latam-Application-Oc", "br");
         headers.set("X-latam-Application-Lang", "pt");
 
-        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = template.exchange(uri.toUriString(), HttpMethod.GET, httpEntity, String.class); //todo: Bad Request
+        HttpEntity<Object> httpEntity = new HttpEntity<>(headers);
+        ResponseEntity<String> response = template.exchange(uri.toUri(), HttpMethod.GET, httpEntity, String.class);
         System.out.println(response);
     }
 
